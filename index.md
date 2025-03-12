@@ -6,4 +6,4 @@ Así que pienso conectar desde aquí todo lo que sé, y dejarlo para quien quier
 Aquí dejo una lista con las distintas cosas que he escrito
 (**NOTA**: están escritas hace mucho tiempo y todavía no han sido adaptadas a Markdown, por lo que pueden presentar errores como enlaces que no llevan a ningún sitio o partes que no se muestran bien dentro de este nuevo sistema de blogging. Iré trabajando en pulirlo todo a lo largo de las próximas semanas).
 Tabla de contenidos:
-[1. ¡Bienvenido!](
+[1. ¡Bienvenido!](archivo1.md)
