@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html lang="es" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Maldita productividad - Jhizanouts</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Jhizanouts</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="maldita-productividad"><a class="header" href="#maldita-productividad">Maldita productividad</a></h1>
+<p>Me encontraba pensando justo la noche anterior sobre si soy productivo y qué es, a un nivel más profundo.</p>
+<p>Entonces empecé a pensar y buscar, queriendo encontrar aunque sea un trazo de lo que quizá podría ser una respuesta que al menos me resultase válida.</p>
+<p>Miro, justo ahora, mientras escribo esto, la definición casual, la primera que me encuentro en Google. Dice que es la relación entre el tiempo y recursos invertidos en una tarea con el resultado que produce.</p>
+<p>Y si lo pienso, en efecto, así es. Eso es productividad. Pero como has leído el título, sabes que no es eso de lo que vengo a hablar.</p>
+<p>Empecemos sumergiéndonos en algo más interesante. ¿Qué nos proporciona la productividad? ¿Es esta posible? ¿Qué nos limita?</p>
+<p>Justo eso es un limitador, las tareas que no llevan a nada, como podría ser escribir esto. Seguramente nadie lo lea ni se fije, o eso supongo. Siguiendo la definición anteriormente dicha, no es en absoluto productivo porque es un gasto de tiempo que no compensará.</p>
+<p>Pero en verdad sí compensa. Aunque no sea alguien curtido para este tipo de análisis y que no sepa expresarse de una forma adecuada ni correcta, simplemente escribo sin limitaciones (o al menos las limitaciones que creo que tengo, siempre hay limitaciones más allá, que ni puedo llegar a ver). Y escribir sin limitaciones es maravilloso, me ayuda a plasmar mis pensamientos de una forma clara y entenderme mejor a mi mismo.</p>
+<p>Entonces, sigamos con el ejemplo de esto mismo. ¿Compensa? Depende de lo que sea compensar.</p>
+<p>El punto de vista del valor conseguido a través del tiempo es mayoritariamente material, y aunque no esté mal pensarlo así per se, igualmente deja aparte cualquier otra tarea que nos ayude a nosotros como a mí me ayuda escribir esto (si no me ayudase en nada, ¿qué me motivaría para hacerlo?).</p>
+<p>Todos necesitamos el tiempo que perder, y perseguir ese objetivo de ser “súper humano”; aquel que nunca pierde el tiempo y que cumple todo, es algo irrealista. Tenemos que tener tiempo libre en el que hagamos simplemente nada, para relajarnos y vivir una vida que podamos aprovechar más en los momentos que queramos.</p>
+<p>Ponía el ejemplo de escribir porque es algo que a menudo se considera “improductivo” o una pérdida de tiempo. La sociedad considera productivo el trabajo o la mejora de este a través de una formación conocida, y deja aparte cual rasgo humano como es el pensar, calificándolo como inútil.</p>
+<p>Perder el tiempo no es malo, quizá parezca malo por como se puede pensar en perder el tiempo. No me refiero con esto a tumbarse en el sofá pasando vídeos de TikTok uno tras otro, viendo cosas que no aporten. El tiempo que se pierde (o más bien pienso que debería decir que se “gana”) es ese tiempo en el que podemos sentarnos, pensar que hemos hecho o dedicarnos a algo que no nos requiera ningún esfuerzo o no produzca nada material, simplemente siendo algo para nosotros de una forma personal.</p>
+<p>Distingo entre dos tipos de momentos personales: descansos y distracciones. El descanso es fisiológico, el cuerpo se recompone a través del ciclo de sueño. Y por otro lado, la distracción. En primer lugar, no podemos distraernos al completo. ¿Te ha pasado alguna vez que estabas haciendo algo, no recordaste una palabra, y horas después, haciendo algo que no tiene nada que ver, la has recordado? El cerebro sigue trabajando subconscientemente en muchas pequeñas cosas que han sucedido. Esto mismo sucede mientras te distraes, ocupas tu atención en otra cosa, pero el cerebro sigue trabajando en ello. Además, la distracción tiene dos subcategorías, las “buenas” y las “malas”.</p>
+<p>La principal diferencia entre estas dos es la siguiente: las “buenas” son formas de dejar el cerebro en “stand-by”, dejar que los pensamientos lleguen y se vayan. Mucha gente toma paseos para ello, simplemente camina y deja que el cerebro se dedique a ver el momento antes que pensar en tal tema. En contraposición, están las malas, que suponen un bombardeo de información, que aunque pueda ser información valiosa o que nos aporte algo, está lejos de ser un descanso ideal.</p>
+<p>Las distracciones “malas” pueden ser también nocivas para nosotros o no (de ahí mismo el entrecomillado). Volviendo al ejemplo de escribir esto, escribir es una distracción mala, pero me aporta el aclarar mis pensamientos, por lo que es beneficiosa para mí, aunque no para mi descanso. No me estoy explotando por ninguna clase de ideal ni meta de hacer tal cosa, disfruto mi tiempo escribiendo y siento que es una actividad que en verdad deseo hacer.</p>
+<p>Hablemos sobre cómo incorporar esta nueva forma de ver la productividad. Para toda guía de ser productivo que enseñe a autodestruirse hay otra que no tanto se enseña por libros (u otro medio) como por experiencia u otras personas que conoce uno.</p>
+<p>No me refiero a que abandones tus obligaciones, por muy roto que esté todo el sistema empresarial o educativo eso está lejos de ser una solución. Uno debe poder sacar provecho de este, logrando aprovechar el tiempo no explotándose más, sino siendo más feliz cuando se puede. Con eso se logra el equilibrio y se puede conseguir que el trabajo sea aguantable (al menos todo lo aguantable que el trabajo puede ser).</p>
+<p>Así que seamos libres, dediquémonos a nosotros y pasemos tiempo haciendo las cosas que debemos hacer, porque lo que tenemos que hacer no es ser sobreexplotados por los demás ni nosotros mismos.</p>
+<p>Muchas gracias por leer.</p>
+<p>(Pendiente de revisión)</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../japo/verbos_in_transitivos.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../japo/verbos_in_transitivos.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
